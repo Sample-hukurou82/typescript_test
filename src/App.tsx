@@ -1,0 +1,153 @@
+import React, { memo } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+
+const name = "hello";
+
+let nameChange = "hello";
+nameChange = "hello2";
+
+let username = "Hello";
+let dummyNumber = 2;
+let bool = true;
+
+let array1 = [true, false, true];
+let array2 = [0, 1, "hello"];
+
+interface NAME {//aaa
+  first: string;
+  last: string | null;
+}
+
+let nameObj: NAME = { first: "yamada", last: null };
+
+const func1 = (x: number, y: number): number => {
+  return x + y;
+};
+
+//Intersection Types
+type PROFILE = {
+  age: number;
+  city: string;
+};
+
+type LOGIN = {
+  username: string;
+  password:string;
+};
+
+type USER = PROFILE & LOGIN;
+
+const userA: USER = {
+  age: 30,
+  city: "Tokyo",
+  username: "xxx",
+  password: "yyy",
+};
+
+//Union Types
+let value: boolean | number
+value = true;
+value = 10;
+
+let arrayUni: (number | string)[];
+arrayUni = [0,1,2,"hello"];
+
+//
+let company: "Facebook" | "Google" | "Amazon"
+company = "Amazon";
+
+let memory: 256 | 512;
+memory = 256;
+
+//typeof
+let msg: string = "Hi";
+let msg2: typeof msg;
+msg2 = "hello";
+
+let animal = {cat: "small cat"};
+let newAnimal: typeof animal = {cat: "big cat"};
+
+//keyof
+type KEYS = {
+  primary: string,
+  secondary: string,
+};
+let key: keyof KEYS;
+key = "primary";
+
+//typeof + keyof
+const SPORTS = {
+  soccer: "Soccer",
+  baseball: "baseball",
+};
+
+let keySports: keyof typeof SPORTS;
+keySports = "soccer";
+
+//enum 自動で連番を振ってくれる
+enum OS {
+  Windows,
+  Mac,
+  Linux,
+}
+interface PC {
+  id: number,
+  OSType: OS,
+}
+const PC1: PC ={
+  id:1,
+  OSType: OS.Windows,
+};
+const PC2: PC ={
+  id:2,
+  OSType: OS.Mac,
+};
+
+//型互換性
+const comp1 = "test";
+let comp2:string = comp1;
+
+let comp3: string = "test";
+let comp4: "test" = comp3;
+
+//関数互換性
+let funcComp1 = (x:number) => {};
+let funcComp2 = (x:string) => {};
+
+funcComp1 = funcComp2 //型が違うので代入できない
+
+//Generics ジェネリックス
+interface GEN<T>{
+  item: T;
+}
+const gen0: GEN<string> = {item: "hello"};
+const gen1: GEN = {item: "hello"};
+const gen2: GEN<number> = {item: 12};
+
+interface GEN1<T=string>{
+  item: T;
+}
+const gen3: GEN1 = {item: "hello"};
+
+interface GEN2<T extends string | number>{
+  item: T;
+}
+
+const gen4: GEN2<boolean> = {item: true};
+
+//関数Generics ジェネリックス
+
+
+
+
+
+function App() {
+  return (
+    <div className="App">
+      <header className="App-header"></header>
+    </div>
+  );
+}
+
+export default App;
