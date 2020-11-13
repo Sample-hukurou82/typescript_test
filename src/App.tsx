@@ -137,10 +137,30 @@ interface GEN2<T extends string | number>{
 const gen4: GEN2<boolean> = {item: true};
 
 //関数Generics ジェネリックス
+function funcGen <T>(props: T){
+  return {item: props}
+}
+const gen6 = funcGen<string>("item");
+const gen7 = funcGen<string | null>(null);
 
+function funcGen1<T extends string | null>(props: T){
+  return {value: props}
+}
+const gen8 = funcGen1("hello");
+const gen9 = funcGen1(1);
 
+interface Props {
+  price: number;
+}
+function funcGen3<T extends Props>(props: T){
+  return {value: props.price}
+}
+const gen10 = funcGen3({price:10});
 
-
+//functionコンポーネント
+const funGen4 = <T extends Props>(props: T) => {
+  return {value: props.price}
+}
 
 function App() {
   return (
